@@ -1,0 +1,4 @@
+tags
+# includes cscope.out
+*.out
+1
