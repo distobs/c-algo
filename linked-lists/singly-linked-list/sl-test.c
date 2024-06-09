@@ -34,8 +34,9 @@ main(void)
 		case 1:
 			fputs("What value? ", stdout);
 			scanf("%u", &value);
-			if (sl_insert_after(&my_list, NULL, value) == -1) {
-				fputs("sl_insert_after failed\n", stderr);
+
+			if (sl_ins_after(&my_list, NULL, value) == SL_MEMERR) {
+				fputs("sl_ins_after failed\n", stderr);
 				return 1;
 			}
 
@@ -47,15 +48,21 @@ main(void)
 			fputs("Where? ", stdout);
 			scanf("%zu", &index);
 
-			if (sl_insert_after_idx(&my_list, index, value)
-					== -1) {
-				fputs("sl_insert_after failed\n", stderr);
+			if (index > my_list.sl_size) {
+				fputs("The index is too big.\n", stdout);
+				break;
+			}
+
+			if (sl_ins_after_idx(&my_list, index, value) ==
+			    SL_MEMERR) {
+				fputs("sl_ins_after_idx failed\n", stderr);
 				return 1;
 			}
 
 			break;
 		case 3:
-			if (sl_remove_after(&my_list, NULL, &value) == -1) {
+			if (sl_rmv_after(&my_list, NULL, &value)
+			    == SL_INVLIST) {
 				puts("The list is empty.");
 			} else {
 				printf("%u popped\n", value);
@@ -66,12 +73,15 @@ main(void)
 			fputs("Where? ", stdout);
 			scanf("%zu", &index);
 
-			if (sl_remove_after_idx(&my_list, index, &value)
-					== -1) {
-				puts("The list is empty.");
-			} else {
-				printf("%u popped\n", value);
+			if (index >= my_list.sl_size) {
+				fputs("The index is too big.\n", stdout);
+				break;
 			}
+
+			/* empty lists are handed by the previous if
+			 * statement. */
+			sl_rmv_after_idx(&my_list, index, &value);
+			printf("%u popped\n", value);
 
 			break;
 		default: /* -1 will be handled by the loop condition */
