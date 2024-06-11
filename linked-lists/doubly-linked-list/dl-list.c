@@ -158,7 +158,7 @@ dl_rmv_node(struct dl_list *l, struct dl_node *n, unsigned *store)
 		if (l->head == NULL) {
 			l->tail = NULL;
 		} else {
-			l->head->prev = NULL;;
+			l->head->prev = NULL;
 		}
 	} else {
 		n->prev->next = n->next;

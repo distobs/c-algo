@@ -101,7 +101,7 @@ sl_rmv_after(struct sl_list *l, struct sl_node *n, unsigned *store)
 	}
 
 	if (store != NULL) {
-		*store = old->value;(
+		*store = old->value;
 	}
 
 	free(old);
