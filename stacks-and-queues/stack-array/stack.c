@@ -4,7 +4,7 @@
 
 /* stack_destroy:
  * This function "destroys" the stack, freeing its contents and resetting its
- * original values. */
+ * original values. It should be used when you're done using the stack. */
 void
 stack_destroy(struct stack *s)
 {
@@ -34,7 +34,7 @@ stack_enough(struct stack *s, unsigned needed)
 
 /* stack_head:
  * This function returns the value at the top of the stack. */
-double
+unsigned
 stack_head(struct stack *s)
 {
 	return (s->stk[s->sp]);
@@ -54,7 +54,8 @@ stack_grow(struct stack *s)
 
 /* stack_init:
  * This function sets the default values for the stack: NULL for the contents,
- * 0 for the size, -1 for the stack pointer. */
+ * 0 for the size, -1 for the stack pointer. It should be used before the first
+ * operation in the stack. */
 void
 stack_init(struct stack *s)
 {
@@ -65,12 +66,13 @@ stack_init(struct stack *s)
 
 /* stack_pop:
  * Does a pop operation on the s stack. Stores the popped value inside val if
- * val != NULL Returns -1 if the stack is empty, and 0 otherwise. */
+ * val != NULL. Returns -1 if the stack is empty, and 0 otherwise. */
 int
-stack_pop(struct stack *s, double *val)
+stack_pop(struct stack *s, unsigned *val)
 {
-	if (stack_empty(s))
-		return -1;
+	if (stack_empty(s)) {
+		return STK_INVSTK;
+	}
 
 	if (val != NULL) {
 		*val = s->stk[s->sp];
@@ -87,11 +89,11 @@ stack_pop(struct stack *s, double *val)
  * there's guaranteed space for pushing a value, for example, when popping and
  * pushing again, for consistency and safety. */
 int
-stack_push(struct stack *s, double val)
+stack_push(struct stack *s, unsigned val)
 {
 	if (s->size == 0 || s->sp == (s->size - 1)) {
 		if (stack_grow(s) == -1) {
-			return -1;
+			return STK_MEMERR;
 		}
 	}
 

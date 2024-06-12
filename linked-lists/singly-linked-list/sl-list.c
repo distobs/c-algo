@@ -89,7 +89,7 @@ sl_rmv_after(struct sl_list *l, struct sl_node *n, unsigned *store)
 		}
 	} else {
 		if (n->next == NULL) { /* can't remove from after tail */
-			return -1;
+			return SL_INVNODE;
 		}
 
 		old = n->next;
