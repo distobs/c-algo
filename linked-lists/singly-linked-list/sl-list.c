@@ -40,8 +40,8 @@ sl_ins_after(struct sl_list *l, struct sl_node *n, unsigned value)
 	new->value = value;
 
 	if (n == NULL) {
-		new->next = l->head;
-		l->head = new;
+		new->next	= l->head;
+		l->head		= new;
 
 		if (l->sl_size == 0) {
 			l->tail = l->head;

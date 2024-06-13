@@ -12,7 +12,7 @@ ll_stack_init(struct ll_stack *s)
 	s->ll_stk_size	= 0;
 }
 
-/* stack_kill:
+/* ll_stack_kill:
  * Pops all elements from the stack. */
 void
 ll_stack_kill(struct ll_stack *s)
@@ -22,7 +22,7 @@ ll_stack_kill(struct ll_stack *s)
 	}
 }
 
-/* stack_push:
+/* ll_stack_push:
  * Inserts an element at the stack's head. It returns one of these negative
  * values on error:
  *
