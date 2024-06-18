@@ -17,7 +17,7 @@ sl_list_init(struct sl_list *l)
 void
 sl_list_kill(struct sl_list *l)
 {
-	while (l->sl_size > 0) {
+while (l->sl_size > 0) {
 		sl_rmv_after(l, NULL, NULL);
 	}
 }

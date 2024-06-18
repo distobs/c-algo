@@ -36,6 +36,7 @@ main(void)
 			scanf("%u", &value);
 
 			if (sl_ins_after(&my_list, NULL, value) == SL_MEMERR) {
+				sl_list_kill(&my_list);
 				fputs("sl_ins_after failed\n", stderr);
 				return 1;
 			}
@@ -55,6 +56,7 @@ main(void)
 
 			if (sl_ins_after_idx(&my_list, index, value) ==
 			    SL_MEMERR) {
+				sl_list_kill(&my_list);
 				fputs("sl_ins_after_idx failed\n", stderr);
 				return 1;
 			}
