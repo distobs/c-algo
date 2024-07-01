@@ -1,9 +1,10 @@
-----------------------------------c-algo---------------------------------------
+----------------------------------ds-algo--------------------------------------
 
-C-algo: a collection of algorithms and data structures, using Kyle Loundon's
-Mastering Algorithms in C as a reference (sometimes not).
+Collection of data strutures in some languages I know. Kyle Loundon's book is used as reference for C
 
 ----------------------------------building-------------------------------------
+
+For C:
 
 Each data structure-specific folder contains three C files: the
 <datastructure>.c file, the <datastructure>.h file, and the
@@ -12,3 +13,7 @@ Each data structure-specific folder contains three C files: the
 $ gcc <datastructures>.c <datastructure>-test.c
 
 To get a test program for that data structure.
+
+For anything else:
+
+wait
